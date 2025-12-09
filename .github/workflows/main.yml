@@ -1,0 +1,45 @@
+name: Hourly Python Script
+
+# 触发条件
+on:
+  schedule:
+    # Cron 表达式：分 时 日 月 周
+    # "0 * * * *" 代表每小时的第 0 分钟执行
+    - cron: '0 * * * *'
+  # 允许手动在 Actions 页面点击运行（方便测试）
+  workflow_dispatch:
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. 下载仓库代码到虚拟环境
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # 2. 设置 Python 环境 (这里用 Python 3.9，你可以改)
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      # 3. 安装依赖 (如果有 requirements.txt)
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+      # 4. 运行你的脚本
+      - name: Run script
+        run: python main.py
+        # 如果你的脚本需要环境变量（密码/Key），在这里配置
+        env:
+          MY_API_KEY: ${{ secrets.MY_API_KEY }}
+          RSS_ADDRESS: ${{ secrets.RSS_ADDRESS }}
+          NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
+          DEEPSEEK_API: ${{ secrets.DEEPSEEK_API }}
+          TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
+          SMMS_TOKEN: ${{ secrets.SMMS_TOKEN }}
+          DOUBAN_COOKIE: ${{ secrets.DOUBAN_COOKIE }} 
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
