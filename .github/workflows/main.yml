@@ -32,7 +32,7 @@ jobs:
 
       # 4. 运行你的脚本
       - name: Run script
-        run: python main.py
+        run: python movietracker.py
         # 如果你的脚本需要环境变量（密码/Key），在这里配置
         env:
           MY_API_KEY: ${{ secrets.MY_API_KEY }}
