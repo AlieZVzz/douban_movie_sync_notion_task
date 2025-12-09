@@ -43,3 +43,4 @@ jobs:
           SMMS_TOKEN: ${{ secrets.SMMS_TOKEN }}
           DOUBAN_COOKIE: ${{ secrets.DOUBAN_COOKIE }} 
           NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          NOTION_API: ${{ secrets.NOTION_API }}
