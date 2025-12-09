@@ -1,8 +1,14 @@
 import requests
 import os
 import yaml
+import logging
 
-from movietracker import logger
+# 设置日志格式
+log_format = "%(asctime)s - %(name)s - %(levelname)s - %(funcName)s:%(lineno)d - %(message)s"
+logging.basicConfig(level=logging.INFO, format=log_format)
+
+# 获取日志器
+logger = logging.getLogger("NotionAPI")
 
 """
     body = {
@@ -83,8 +89,7 @@ def DataBase_item_query(query_database_id):
     url_notion_block = 'https://api.notion.com/v1/databases/' + query_database_id + '/query'
     res_notion = requests.post(url_notion_block, headers=headers)
     logger.info(res_notion.content.decode("utf-8"))
-    print(res_notion.content.decode("utf-8"))
-    print(res_notion.status_code)
+    logger.info(res_notion.status_code)
     S_0 = res_notion.json()
     res_travel = S_0['results']
     if_continue = len(res_travel)
