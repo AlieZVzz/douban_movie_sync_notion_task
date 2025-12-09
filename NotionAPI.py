@@ -22,10 +22,11 @@ from movietracker import logger
 """
 
 # notion基本参数
-script_dir = os.path.dirname(os.path.abspath(__file__))
-config_path = os.path.join(script_dir, 'config.yaml')
-fs = open(config_path, encoding="UTF-8")
-config = yaml.safe_load(fs)
+
+config = {
+            "notion_api": os.getenv("NOTION_API")
+        }
+
 headers = {
     "accept": "application/json",
     "Notion-Version": "2022-06-28",
