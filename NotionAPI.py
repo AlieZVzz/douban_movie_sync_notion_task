@@ -39,7 +39,7 @@ headers = {
     "content-type": "application/json",
     "authorization": config["notion_api"]
 }
-logger.info("Notion API initialized., ready to use. "+ headers)
+logger.info("Notion API initialized., ready to use. "+ headers['authorization'])
 
 
 # 删除页面：delete_page(page_id)
